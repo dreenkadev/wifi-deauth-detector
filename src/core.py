@@ -189,7 +189,7 @@ class DeauthDetector:
         
         print(f"{icon} {Colors.DIM}{event.timestamp[11:19]}{Colors.RESET} ", end="")
         print(f"{Colors.RED}{event.frame_type.upper():8}{Colors.RESET} ", end="")
-        print(f"{event.source_mac} → {event.dest_mac}")
+        print(f"{event.source_mac} -> {event.dest_mac}")
         
     def generate_alert(self, event: DeauthEvent, count: int):
         """Generate attack alert"""
@@ -201,7 +201,7 @@ class DeauthDetector:
         else:
             attack_type = "Targeted Deauth Attack"
             severity = "high"
-            description = f"Targeted deauth attack: {event.source_mac} → {event.dest_mac}"
+            description = f"Targeted deauth attack: {event.source_mac} -> {event.dest_mac}"
         
         alert = Alert(
             timestamp=event.timestamp,
@@ -222,7 +222,7 @@ class DeauthDetector:
         color = Colors.RED if alert.severity == "critical" else Colors.YELLOW
         
         print(f"\n{color}{'═' * 60}")
-        print(f"  ⚠️  ALERT: {alert.attack_type}")
+        print(f"  [!]  ALERT: {alert.attack_type}")
         print(f"  Severity: {alert.severity.upper()}")
         print(f"  Source: {alert.source_mac}")
         print(f"  Target: {alert.target_mac}")
